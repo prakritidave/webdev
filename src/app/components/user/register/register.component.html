@@ -1,0 +1,28 @@
+<p>
+  register works!
+</p>
+<div class="container">
+  <h1>Register</h1>
+  <form>
+    <input type="text" class = "form-control input-lg"
+           name="firstname" [(ngModel)]="firstname"
+           placeholder="firstname"><br>
+    <input type="text" class = "form-control input-lg"
+           name="lastname" [(ngModel)]="lastname"
+           placeholder="lastname"><br>
+    <input type="text" class = "form-control input-lg"
+           name="username" [(ngModel)]="username"
+           placeholder="username"><br>
+    <input type="password" class = "form-control input-lg"
+           name="password" [(ngModel)]="password"
+           placeholder="password"><br>
+    <input type="password" class = "form-control input-lg"
+           name="verify password" [(ngModel)]="verifypassword"
+           placeholder="verify password"><br>
+    <button type="button" (click)="addRegisteredUser()" class="btn btn-primary btn-block">Register</button><br>
+
+    <a routerLink="/">
+    <button type="button" class="btn btn-danger btn-block">Cancel</button>
+    </a>
+  </form>
+</div>

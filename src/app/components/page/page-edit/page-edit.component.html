@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+    <div class="navbar-text pull-left">
+      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page">
+          <span (click)="saveChanges()" class="glyphicon glyphicon-chevron-left cl-text-black">
+          </span>
+      </a>
+    </div>
+    <span class="navbar-brand cl-text-grey cl-text-bold">
+      Edit Page
+    </span>
+    <div class="navbar-text pull-right cl-icon-padding">
+      <span class="glyphicon glyphicon-plus cl-text-black"></span>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid cl-container-padding-bottom cl-container-padding">
+  <form>
+    <div class ="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control"
+             name="pagename"
+             id="name" placeholder="Blog Post"
+             [(ngModel)] = "pageName">
+    </div>
+    <div class ="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control"
+                name="pageDescription"
+                rows="2" cols="20" placeholder="Page Description"
+                [(ngModel)] = "pageDescription"></textarea>
+    </div>
+  </form>
+  <button type="button" (click)="deleteThisPage()" class="btn btn-danger btn-block">
+    Delete
+  </button>
+</div>
+<nav class="navbar navbar-fixed-bottom navbar-default">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <span class="glyphicon glyphicon-user cl-text-blue"></span>
+    </div>
+  </div>
+</nav>
+

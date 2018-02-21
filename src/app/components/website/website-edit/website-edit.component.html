@@ -1,0 +1,76 @@
+<nav class="navbar navbar-fixed-top bg-primary">
+  <div class="row">
+    <div class="col-xs-4 hidden-xs">
+      <div class="container-fluid">
+        <a routerLink="/profile/{{userId}}/website">
+          <span class="glyphicon glyphicon-chevron-left navbar-text pull-left cl-text-white">
+          </span>
+        </a>
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+          Websites
+        </a>
+        <a href="#" class="navbar-link navbar-text pull-right cl-text-white" style="margin-left: 40%">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+          Edit Website
+        </a>
+        <div class="navbar-text pull-right cl-text-white cl-icon-padding">
+          <span class="glyphicon glyphicon-ok" (click)="saveWebsiteDetails()"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid cl-container-padding-bottom cl-container-padding">
+  <div class="col-xs-4 hidden-xs">
+    <ul class="list-group">
+      <li *ngFor = "let website of websites" class="list-group-item li-no-border">
+        <a routerLink="/profile/{{userId}}/website/{{website._id}}">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+        <a routerLink="/profile/{{userId}}/website/{{website._id}}/page">
+          <p>{{website.name}}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="verticle-line hidden-xs" style="margin-top: 0"></div>
+  <div class="col-xs-8">
+    <form>
+      <div class ="form-group">
+        <label for="website-name">Website Name</label>
+
+        <input type="text" class="form-control"
+               name="wbesitename"
+               [(ngModel)] = "websiteName"
+               id="website-name" placeholder="Name">
+      </div>
+      <div class ="form-group">
+        <label for="website-description">Website Description</label>
+
+        <textarea id="website-description"
+                  class="form-control"
+                  rows="5" placeholder="Description"
+                  name="websitedescription"
+                  [(ngModel)]="websiteDescription">
+          Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003, Generally the blogs are hosted by Google</textarea>
+      </div>
+    </form>
+    <button type="button" class="btn btn-danger btn-block" (click)="deleteThisWebsite()">Delete</button>
+  </div>
+</div>
+
+<nav class="navbar navbar-fixed-bottom bg-primary">
+  <div class="container-fluid row">
+    <a href="#" class="navbar-text pull-right cl-text-white cl-icon-padding">
+      <span class="glyphicon glyphicon-user"></span>
+    </a>
+  </div>
+</nav>
+

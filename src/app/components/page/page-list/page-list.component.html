@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+    <div class="navbar-text pull-left">
+      <a routerLink="/profile/{{userId}}/website">
+          <span class="glyphicon glyphicon-chevron-left cl-text-black">
+          </span>
+      </a>
+    </div>
+    <span class="navbar-brand cl-text-grey cl-text-bold">
+      Pages
+    </span>
+    <div class="navbar-text pull-right cl-icon-padding">
+      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/new">
+      <span class="glyphicon glyphicon-plus cl-text-black"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid cl-container-padding cl-container-padding-bottom">
+  <ul class="list-group">
+    <li *ngFor = "let page of pages" class="list-group-item li-no-border">
+      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{page._id}}" >
+        <span class="glyphicon glyphicon-cog pull-right"></span>
+      </a>
+      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{page._id}}/widget">
+        <p>{{page.name}}</p>
+      </a>
+    </li>
+  </ul>
+</div>
+<nav class="navbar navbar-fixed-bottom navbar-default">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <span class="glyphicon glyphicon-user cl-text-blue"></span>
+    </div>
+  </div>
+</nav>

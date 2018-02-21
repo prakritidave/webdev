@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+    <div class="navbar-text pull-left">
+      <a (click)="goBack()">
+          <span class="glyphicon glyphicon-chevron-left cl-text-black">
+          </span>
+      </a>
+    </div>
+    <span class="navbar-brand cl-text-grey cl-text-bold">
+     Update Widget
+    </span>
+    <div class="navbar-text pull-right cl-text-white cl-icon-padding">
+        <span (click)="updateHeaderWidget()" class="glyphicon glyphicon-ok"></span>
+    </div>
+  </div>
+</nav>
+
+<div class="container cl-container-padding cl-container-padding-bottom">
+  <form>
+    <div class ="form-group">
+      <label for="header-text">Text</label>
+
+      <input type="text" class="form-control"
+             name="wbesitename"
+             value="header text"
+             [(ngModel)] = "text"
+             id="header-text" placeholder="Text">
+    </div>
+    <div class ="form-group">
+      <label for="header-size">Size</label>
+
+      <input id="header-size"
+             value="header size"
+                class="form-control"
+                placeholder="Size"
+
+                name="size"
+             [(ngModel)]="size">
+    </div>
+  </form>
+  <button type="button" class="btn btn-danger btn-block" (click)="deleteHeaderWidget()">Delete</button>
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default">
+  <div class="container-fluid row">
+  </div>
+</nav>
