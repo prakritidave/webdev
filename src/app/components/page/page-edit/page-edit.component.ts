@@ -36,6 +36,7 @@ export class PageEditComponent implements OnInit {
    this.pageService.updatePage(this.pageId,
      new Page((new Date()).getTime() + '', this.pageName,
        this.websiteId, this.pageDescription));
+    this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page']);
   }
 
   deleteThisPage() {

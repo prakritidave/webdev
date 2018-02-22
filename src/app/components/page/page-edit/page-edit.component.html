@@ -2,7 +2,7 @@
   <div class="container-fluid row">
     <div class="navbar-text pull-left">
       <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page">
-          <span (click)="saveChanges()" class="glyphicon glyphicon-chevron-left cl-text-black">
+          <span class="glyphicon glyphicon-chevron-left cl-text-black">
           </span>
       </a>
     </div>
@@ -10,7 +10,7 @@
       Edit Page
     </span>
     <div class="navbar-text pull-right cl-icon-padding">
-      <span class="glyphicon glyphicon-plus cl-text-black"></span>
+      <span (click)="saveChanges()" class="glyphicon glyphicon-ok cl-text-black"></span>
     </div>
   </div>
 </nav>

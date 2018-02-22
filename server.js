@@ -8,11 +8,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
 // Point static path to dist -- For building -- REMOVE
-//app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use(express.static(path.join(__dirname, '/dist')));
 
 
 // CORS
@@ -45,10 +42,11 @@ const widgetYoutube = '/views/widget/widget-youtube.html';
 
 //var serverSide = require("./server/test-mongodb/app");
 //serverSide(app);
+//app.use(express.static(__dirname + '/dist'));
 
-var port_number = server.listen(process.env.PORT || 3000);
+var port_number = server.listen(process.env.PORT || 3100);
 app.listen(port_number);
-
+app.set(port_number);
 
 
 app.get('/style.css', function (req, res) {
@@ -56,9 +54,9 @@ app.get('/style.css', function (req, res) {
 });
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-//app.get('/', function (req, res) {
-//  res.sendFile(path.join(__dirname, '/src/assets/index.html'));
-//});
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/src/index.html'));
+});
 
 
 app.get(pageEdit, (req, res) => {
