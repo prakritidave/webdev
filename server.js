@@ -55,9 +55,9 @@ app.get('/style.css', function (req, res) {
 });
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/src/assets/index.html'));
-});
+//app.get('/', function (req, res) {
+//  res.sendFile(path.join(__dirname, '/src/assets/index.html'));
+//});
 
 
 app.get(pageEdit, (req, res) => {
