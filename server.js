@@ -23,12 +23,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
-
-const port = process.env.PORT || '3100';
-app.set('port', port);
-
+//const port = process.env.PORT || '3100';
+//app.set('port', port);
 
 // Create HTTP server
 const server = http.createServer(app);
@@ -49,6 +45,11 @@ const widgetYoutube = '/views/widget/widget-youtube.html';
 
 //var serverSide = require("./server/test-mongodb/app");
 //serverSide(app);
+
+var port_number = server.listen(process.env.PORT || 3000);
+app.listen(port_number);
+
+
 
 app.get('/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, '/src/assets/css/style.css'));
@@ -123,5 +124,6 @@ function getResponseFile(req, res, path) {
   res.sendFile(__dirname + '/src/assets' + path);
 }
 
+//server.listen(process.env.PORT || 5000);
 
-server.listen( port , () => console.log('Running on port 3100'));
+//server.listen( port , () => console.log('Running on port 3100'));
