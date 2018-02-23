@@ -1,0 +1,72 @@
+.cl-text-white{
+  color: #fff;
+}
+
+.cl-text-black{
+  color: #000000;
+}
+
+.cl-highlight-text-blue{
+  color: aqua;
+}
+
+.cl-container-padding {
+  padding-top: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cl-container-padding-bottom {
+  padding-bottom: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.cl-padding-websites-left{
+  padding-left: 47px;
+}
+.cl-icon-padding{
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.cl-text-grey{
+  color:grey;
+}
+
+.verticle-line{
+  border-right: solid thin lightgrey;
+  height:84%;
+  margin-left:32%;
+  position: absolute;
+}
+
+.cl-plus-padding-left{
+  padding-left: 320px;
+}
+
+.cl-text-bold{
+  font-weight: bolder;
+}
+
+body {
+  padding-top: 70px;
+  padding-bottom: 10px;
+}
+
+.cl-text-blue{
+  color: dodgerblue;
+}
+
+.li-no-border{
+  border: none;
+}
+
+.cl-widget-images{
+  display: inline;
+  width: 85%;
+  z-index: 100;
+  position: relative;
+}

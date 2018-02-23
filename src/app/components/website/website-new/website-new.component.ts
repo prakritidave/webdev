@@ -22,9 +22,10 @@ export class WebsiteNewComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.userId = params['userId'];
-        this.websiteService.websites = this.websiteService.findWebsitesByUser(this.userId);
       }
     );
+    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    console.log(this.websites);
   }
 
   getWebsiteDetails() {
