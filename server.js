@@ -3,8 +3,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
-var mongoose = require("mongoose");
-var db = mongoose.connect('mongodb://localhost:27017/webdev');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,11 +47,16 @@ const server = http.createServer(app);
 // });
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
 
 require("./assignment/app")(app);
+
+app.get('/', function (req, res) {
+  //res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 //app.listen(port, ipaddress);
 
 /*app.get(pageEdit, (req, res) => {
