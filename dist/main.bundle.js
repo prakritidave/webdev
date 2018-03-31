@@ -2466,7 +2466,7 @@ var WidgetService = /** @class */ (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    baseUrl: 'https://cs5610prakritidave-webdev.herokuapp.com/'
+    baseUrl: 'https://cs5610prakritidave-webdev.herokuapp.com'
 };
 
 
