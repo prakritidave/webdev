@@ -43,13 +43,13 @@ const server = http.createServer(app);
 //var serverSide = require("./server/test-mongodb/app");
 //serverSide(app);
 
-app.get('/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, '/src/assets/css/style.css'));
-});
+// app.get('/style.css', function (req, res) {
+//   res.sendFile(path.join(__dirname, '/src/assets/css/style.css'));
+// });
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/src/index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 require("./assignment/app")(app);
