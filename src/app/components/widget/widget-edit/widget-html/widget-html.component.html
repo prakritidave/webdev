@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-text pull-left">
+      <a (click)="goBack()">
+          <span class="glyphicon glyphicon-chevron-left cl-text-black">
+          </span>
+      </a>
+    </div>
+    <span class = "navbar-header navbar-brand thick pull-left">
+       <b>Widget Edit</b>
+    </span>
+    <p class="navbar-text pull-right">
+      <a (click) = "updateWidget()" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container">
+  <div *ngIf="flag"
+       class="alert alert-danger">
+    {{error}}
+  </div>
+  <form novalidate name="myform">
+
+    <div class="form-group" >
+      <label for="Name">Name</label>
+      <input [(ngModel)]="widgetName" type="text" class="form-control" id="Name"
+             name="widname" placeholder="Name" required>
+      <span class="alert-class"
+            *ngIf="flag">{{alert}}</span>
+    </div>
+    <!-- use with ngModel -->
+    <quill-editor [(ngModel)]="text" name="myquill"></quill-editor>
+  </form>
+  <p></p>
+
+  <a class="btn btn-danger btn-block" (click)="deleteWidget()">Delete</a>
+  <!--ng-click="model.deleteWidget(model.widget)" -->
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink= "/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+  </div>
+</nav>

@@ -16,8 +16,11 @@ import {WidgetHeaderComponent} from './components/widget/widget-edit/widget-head
 import {WidgetImageComponent} from './components/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import {WebsiteEditComponent} from './components/website/website-edit/website-edit.component';
+import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
+import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
+import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
-
+// /profile/{{user._id}}/website/{{website._id}}/page
 const appRoutes: Routes = [
 {path: 'login', component: LoginComponent},
 {path: 'register', component: RegisterComponent},
@@ -32,8 +35,12 @@ const appRoutes: Routes = [
 {path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new', component: WidgetChooserComponent},
 {path: 'profile/:userId/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent},
 {path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/image', component: WidgetImageComponent},
+{path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/flickr', component: FlickrImageSearchComponent},
 {path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/header', component: WidgetHeaderComponent},
-{path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/youtube', component: WidgetYoutubeComponent}];
+{path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/youtube', component: WidgetYoutubeComponent},
+{path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/html', component: WidgetHtmlComponent},
+{path: 'profile/:userId/website/:websiteId/page/:pageId/widget/new/text', component: WidgetTextComponent}
+];
 
 
 export const routing = RouterModule.forRoot(appRoutes);

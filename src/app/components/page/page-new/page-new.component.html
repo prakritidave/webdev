@@ -1,6 +1,3 @@
-<p>
-  page-new works!
-</p>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid row">
     <div class="navbar-text pull-left">
@@ -13,8 +10,8 @@
       New Page
     </span>
     <div class="navbar-text pull-right cl-icon-padding">
-      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page">
-        <span (click)="createNewPage()" class="glyphicon glyphicon-ok cl-text-black"></span>
+      <a (click)="createNewPage()">
+        <span class="glyphicon glyphicon-ok cl-text-black"></span>
       </a>
     </div>
   </div>
@@ -29,7 +26,7 @@
     </div>
     <div class ="form-group">
       <label for="description">Description</label>
-      <textarea id="description" class="form-control"
+      <textarea id="description" name="description" class="form-control"
                 rows="2" cols="20" placeholder="Page Description"
       [(ngModel)]="pageDesc"></textarea>
     </div>
@@ -38,7 +35,9 @@
 <nav class="navbar navbar-fixed-bottom navbar-default">
   <div class="container-fluid row">
     <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/profile/{{userId}}">
       <span class="glyphicon glyphicon-user cl-text-blue"></span>
+      </a>
     </div>
   </div>
 </nav>

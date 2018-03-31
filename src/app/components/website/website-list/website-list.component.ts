@@ -12,11 +12,9 @@ import {UserService} from '../../../services/user.service.client';
   styleUrls: ['./website-list.component.css']
 })
 export class WebsiteListComponent implements OnInit {
-  userId: String;
-  websiteName: String;
-  websiteDescription: String;
-  user: User;
-  websites: Website[] = [];
+  userId: any;
+  user: any;
+  websites: any;
 
   constructor( private userService: UserService, private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute) { }
@@ -25,10 +23,16 @@ export class WebsiteListComponent implements OnInit {
     this.activatedRoute.params.subscribe(
        (params: any) => {
         this.userId = params['userId'];
+         this.websiteService.findWebsitesByUser(this.userId).subscribe((websitelist) => {
+           console.log(websitelist);
+             this.websites = websitelist;
+         });
+         this.userService.findUserById(this.userId).subscribe((curruser) => {
+           this.user = curruser;
+           console.log(this.user);
+         });
     }
     );
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
-    this.user = this.userService.findUserById(this.userId);
   }
 
 }

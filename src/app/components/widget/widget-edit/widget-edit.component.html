@@ -1,11 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid row">
     <div class="navbar-text pull-left">
+      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget">
           <span class="glyphicon glyphicon-chevron-left cl-text-black">
           </span>
+      </a>
     </div>
     <span class="navbar-brand cl-text-grey cl-text-bold">
-      Widgets
+      Widget Edit
     </span>
     <div class="navbar-text pull-right cl-icon-padding">
         <span class="glyphicon glyphicon-plus cl-text-black"></span>
@@ -15,21 +17,36 @@
 
 <div class = "container cl-container-padding cl-container-padding-bottom">
 
-    <div [ngSwitch]="currentWidget.widgetType">
+    <div [ngSwitch]="widgetType">
 
-      <div *ngSwitchCase="'HEADER'">
+      <div *ngSwitchCase="'Header'">
         <app-widget-header>
-        </app-widget-header>-
+        </app-widget-header>
       </div>
 
-      <div *ngSwitchCase="'YOUTUBE'">
+      <div *ngSwitchCase="'YouTube'">
         <app-widget-youtube>
         </app-widget-youtube>
       </div>
 
-      <div *ngSwitchCase="'IMAGE'">
+      <div *ngSwitchCase="'Image'">
         <app-widget-image>
         </app-widget-image>
+      </div>
+
+      <div *ngSwitchCase="'HTML'">
+        <app-widget-html>
+        </app-widget-html>
+      </div>
+
+      <div *ngSwitchCase="'Text'">
+        <app-widget-text>
+        </app-widget-text>
+      </div>
+
+      <div *ngSwitchCase="'Flickr'">
+        <app-flickr-image-search>
+        </app-flickr-image-search>
       </div>
 
     </div>
@@ -37,8 +54,10 @@
 
 <nav class="navbar navbar-fixed-bottom navbar-default">
   <div class="container-fluid row">
-    <div class="pull-right navbar-text cl-icon-padding">
+    <div class="pull-right cl-icon-padding">
+      <a routerLink="/profile/{{userId}}" class="navbar-text pull-right cl-icon-padding">
       <span class="glyphicon glyphicon-user cl-text-blue"></span>
+      </a>
     </div>
     <div class="pull-left navbar-text">
       <a href="#" class="cl-icon-padding">

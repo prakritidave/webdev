@@ -3,14 +3,14 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
+var mongoose = require("mongoose");
+var db = mongoose.connect('mongodb://localhost:27017/webdev');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // Point static path to dist -- For building -- REMOVE
-app.use(express.static(path.join(__dirname, '/dist')));
-
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // CORS
 app.use(function(req, res, next) {
@@ -20,34 +20,28 @@ app.use(function(req, res, next) {
   next();
 });
 
-//const port = process.env.PORT || '3100';
-//app.set('port', port);
+const port = process.env.PORT || '3100';
+app.set('port', port);
 
 // Create HTTP server
 const server = http.createServer(app);
-const pageEdit = '/views/page/page-edit.html';
-const pageList = '/views/page/page-list.html';
-const pageNew = '/views/page/page-new.html';
-const userLogin = '/views/user/login.html';
-const userProfile = '/views/user/profile.html';
-const userRegister = '/views/user/register.html';
-const websiteEdit = '/views/website/website-edit.html';
-const websiteList = '/views/website/website-list.html';
-const websiteNew = '/views/website/website-new.html';
-const widgetChooser = '/views/widget/widget-chooser.html';
-const widgetHeading = '/views/widget/widget-heading.html';
-const widgetImage = '/views/widget/widget-image.html';
-const widgetList = '/views/widget/widget-list.html';
-const widgetYoutube = '/views/widget/widget-youtube.html';
+// const pageEdit = '/views/page/page-edit.html';
+// const pageList = '/views/page/page-list.html';
+// const pageNew = '/views/page/page-new.html';
+// const userLogin = '/views/user/login.html';
+// const userProfile = '/views/user/profile.html';
+// const userRegister = '/views/user/register.html';
+// const websiteEdit = '/views/website/website-edit.html';
+// const websiteList = '/views/website/website-list.html';
+// const websiteNew = '/views/website/website-new.html';
+// const widgetChooser = '/views/widget/widget-chooser.html';
+// const widgetHeading = '/views/widget/widget-heading.html';
+// const widgetImage = '/views/widget/widget-image.html';
+// const widgetList = '/views/widget/widget-list.html';
+// const widgetYoutube = '/views/widget/widget-youtube.html';
 
 //var serverSide = require("./server/test-mongodb/app");
 //serverSide(app);
-//app.use(express.static(__dirname + '/dist'));
-
-var port_number = server.listen(process.env.PORT || 3100);
-app.listen(port_number);
-app.set(port_number);
-
 
 app.get('/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, '/src/assets/css/style.css'));
@@ -58,8 +52,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/src/index.html'));
 });
 
+require("./assignment/app")(app);
+//app.listen(port, ipaddress);
 
-app.get(pageEdit, (req, res) => {
+/*app.get(pageEdit, (req, res) => {
   getResponseFile(req, res,  pageEdit);
 });
 
@@ -121,7 +117,7 @@ app.get(widgetYoutube, (req, res) => {
 function getResponseFile(req, res, path) {
   res.sendFile(__dirname + '/src/assets' + path);
 }
+*/
 
-//server.listen(process.env.PORT || 5000);
-
-//server.listen( port , () => console.log('Running on port 3100'));
+server.listen( port , function() {
+  console.log('Node app is running on port', app.get('port'))});

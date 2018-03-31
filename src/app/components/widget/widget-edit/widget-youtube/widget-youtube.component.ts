@@ -16,10 +16,11 @@ export class WidgetYoutubeComponent implements OnInit {
   width: String;
   url: String;
   text: String;
-  widget: Widget;
+  widget: any;
   pageId: String;
   userId: String;
   websiteId: String;
+  updatedWidget: any;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -35,18 +36,32 @@ export class WidgetYoutubeComponent implements OnInit {
         this.websiteId = params['websiteId'];
         console.log('widgetId' + this.widgetId);
       });
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
-    this.width = this.widget.width;
-    this.text = this.widget.text;
-    this.url = this.widget.url;
+    this.widgetService.findWidgetById(this.widgetId).subscribe((widgetFound) => {
+      this.widget = widgetFound;
+      this.width = widgetFound.width;
+      this.text = widgetFound.text;
+      this.url = widgetFound.url;
+    });
   }
 
 // new Widget('248', 'YOUTUBE', '321', '2', 'text', '100%', 'https://youtube.com/token' ),
   updateYouTubeWidget() {
-    this.widgetService.updateWidget(this.widgetId,
-      new Widget(this.widgetId, 'YOUTUBE', this.pageId, this.widget.size, this.text, this.width, this.url));
+    // this.updatedWidget = new Widget(this.widgetId, 'YOUTUBE', this.pageId,
+    //   this.widget.size, this.text, this.width, this.url, 0, '' , '' , false);
+    const updateWidget = {
+      _id: this.widgetId,
+      widgettype: 'YouTube',
+      size: this.widget.size,
+      text: this.text,
+      url: this.url,
+      _page: this.pageId,
+      width: this.width
+    };
+    this.widgetService.updateWidget(this.widgetId, updateWidget).subscribe((widget) => {
+      this.updatedWidget = widget;
+      this.location.back();
+    });
 //    this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-    this.location.back();
   }
 
   goBack() {
@@ -54,9 +69,10 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   deleteYouTubeWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
+    this.widgetService.deleteWidget(this.widgetId).subscribe((widgets) => {
+      this.location.back();
+    });
 //    this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-    this.location.back();
   }
 
 }

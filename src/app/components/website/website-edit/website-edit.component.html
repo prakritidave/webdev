@@ -9,7 +9,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold" href="#">
           Websites
         </a>
-        <a href="#" class="navbar-link navbar-text pull-right cl-text-white" style="margin-left: 40%">
+        <a routerLink="/profile/{{userId}}/website/new" class="navbar-link navbar-text pull-right cl-text-white" style="margin-left: 40%">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </div>
@@ -35,7 +35,7 @@
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
         <a routerLink="/profile/{{userId}}/website/{{website._id}}/page">
-          <p>{{website.name}}</p>
+          {{website.name}}
         </a>
       </li>
     </ul>
@@ -59,7 +59,7 @@
                   rows="5" placeholder="Description"
                   name="websitedescription"
                   [(ngModel)]="websiteDescription">
-          Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003, Generally the blogs are hosted by Google</textarea>
+        </textarea>
       </div>
     </form>
     <button type="button" class="btn btn-danger btn-block" (click)="deleteThisWebsite()">Delete</button>
@@ -68,8 +68,8 @@
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
   <div class="container-fluid row">
-    <a href="#" class="navbar-text pull-right cl-text-white cl-icon-padding">
-      <span class="glyphicon glyphicon-user"></span>
+    <a routerLink="/profile/{{userId}}" class="navbar-text pull-right cl-icon-padding">
+      <span class="glyphicon glyphicon-user cl-text-white"></span>
     </a>
   </div>
 </nav>

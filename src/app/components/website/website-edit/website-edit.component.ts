@@ -12,11 +12,13 @@ import {UserService} from '../../../services/user.service.client';
   styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
-  userId: String;
-  websiteId: String;
-  websiteName: String;
-  websiteDescription: String;
-  websites: Website [];
+  userId: any;
+  websiteId: any;
+  newWebsite: Website;
+  websiteName: any;
+  websiteDescription: any;
+  websites: any;
+  currWebsite: any;
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
@@ -26,20 +28,33 @@ export class WebsiteEditComponent implements OnInit {
    this.activatedRoute.params.subscribe( (params: any) => {
      this.userId = params['userId'];
      this.websiteId = params['websiteId'];
-     this.websites = this.websiteService.findWebsitesByUser(this.userId);
+     this.websiteService.findWebsitesByUser(this.userId).subscribe((websitelist) => {
+       // console.log(websitelist);
+       this.websites = websitelist;
+     });
+     this.websiteService.findWebsiteById(this.websiteId).subscribe((websiteFromServer: Website) => {
+       this.currWebsite = websiteFromServer;
+       console.log(websiteFromServer.name);
+       this.websiteName = websiteFromServer.name;
+       this.websiteDescription = websiteFromServer.description;
+     });
    });
 }
 
   saveWebsiteDetails() {
-    this.websiteService.updateWebsite(this.websiteId,
-      new Website(this.websiteId, this.websiteName, this.userId , this.websiteDescription));
-    console.log(this.websiteName, this.websiteDescription);
-    this.router.navigate(['/profile', this.userId , 'website']);
+      this.newWebsite = new Website(this.websiteId, this.websiteName, this.userId, this.websiteDescription);
+      this.websiteService.updateWebsite(this.websiteId, this.newWebsite).subscribe((website) => {
+        this.newWebsite = website;
+        console.log(this.websiteName, this.websiteDescription);
+        this.router.navigate(['/profile', this.userId, 'website']);
+      });
   }
 
   deleteThisWebsite() {
-    this.websiteService.deleteWebsite(this.websiteId);
-    this.router.navigate(['/profile', this.userId , 'website']);
+      this.websiteService.deleteWebsite(this.websiteId).subscribe((newwebsites) => {
+        this.websites = newwebsites;
+        this.router.navigate(['/profile', this.userId, 'website']);
+      });
   }
 
 }

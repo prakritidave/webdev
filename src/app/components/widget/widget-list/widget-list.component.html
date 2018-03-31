@@ -17,46 +17,77 @@
   </div>
 </nav>
 
-<div class = "container cl-container-padding cl-container-padding-bottom">
-
+<div class = "container cl-container-padding">
+<div class="widget-list" appSortable (newIndexes)="reorderWidgets($event)">
   <div *ngFor="let widget of widgets">
 
-    <div [ngSwitch]="widget.widgetType">
-        <div *ngSwitchCase="'HEADER'">
-        <div><p>{{widget.widgetType}} {{widget.text}}</p></div>
+    <div [ngSwitch]="widget.widgettype">
+
+        <div *ngSwitchCase="'HTML'">
+          <div>{{widget.text}}</div>
+          <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div><br>
+
+        <div *ngSwitchCase="'Text'">
+          <div *ngIf="widget.formatted">
+            <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+          </div>
+          <input *ngIf="!widget.formatted && (!widget.rows || widget.rows === 1)" placeholder="{{widget.placeholder}}"
+                 class="form-control"/>
+
+          <textarea *ngIf="!widget.formatted && (widget.rows > 1)" rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                    class="form-control">{{widget.text}}</textarea>
+
+          <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div><br>
+
+        <div *ngSwitchCase="'Header'">
+        <div><p>{{widget.text}}</p></div>
         <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
         </div><br>
 
-        <div *ngSwitchCase="'YOUTUBE'">
-        <p>{{widget.widgetType}}</p>
+        <div *ngSwitchCase="'YouTube'" class="youtube-widget">
         <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="560" height="315" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
+        <iframe width={{widget.width}} height={{widget.width}} [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
         <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
         </div>
         </div><br>
 
-        <div *ngSwitchCase="'IMAGE'">
-        <p>{{widget.widgetType}}</p>
-        <div>
+        <div *ngSwitchCase="'Image'">
         <img class="img-responsive img-rounded cl-widget-images" src={{widget.url}}>
         <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
+        </div><br>
+
+      <div *ngSwitchCase="'Flickr'">
+        <div>
+          <img class="img-responsive img-rounded cl-widget-images" src={{widget.url}}>
+          <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
         </div>
-        </div>
+      </div>
 
     </div>
   </div>
+</div>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-default">
   <div class="container-fluid row">
     <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/profile/{{userId}}">
       <span class="glyphicon glyphicon-user cl-text-blue"></span>
+      </a>
     </div>
     <div class="pull-left navbar-text">
         <span class="glyphicon glyphicon-play"></span>

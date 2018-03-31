@@ -23,7 +23,7 @@
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
       <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{page._id}}/widget">
-        <p>{{page.name}}</p>
+        {{page.name}}
       </a>
     </li>
   </ul>
@@ -31,7 +31,9 @@
 <nav class="navbar navbar-fixed-bottom navbar-default">
   <div class="container-fluid row">
     <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/profile/{{userId}}">
       <span class="glyphicon glyphicon-user cl-text-blue"></span>
+      </a>
     </div>
   </div>
 </nav>

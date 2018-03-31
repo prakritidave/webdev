@@ -17,7 +17,7 @@ export class WidgetChooserComponent implements OnInit {
   pageId: String;
   userId: String;
   websiteId: String;
-  widgets: Widget[] = [];
+  widgets: Widget[];
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute) { }
@@ -32,7 +32,9 @@ export class WidgetChooserComponent implements OnInit {
         console.log('websiteId' + this.websiteId);
         console.log('pageId' + this.pageId);
       });
-    this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
+      this.widgetService.findWidgetsByPageId(this.pageId).subscribe((widgetlist) => {
+      this.widgets = widgetlist;
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from '../../../models/page.model.client';
 import {PageService} from '../../../services/page.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-new',
@@ -15,7 +15,8 @@ export class PageNewComponent implements OnInit {
   userId: String;
 
   constructor(private pageService: PageService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -28,9 +29,14 @@ export class PageNewComponent implements OnInit {
   }
 
   createNewPage() {
-    this.pageService.createPage(this.websiteId,
-      new Page((new Date()).getTime() + '', this.pageName,
-      this.websiteId, this.pageDesc));
+    const newPage = {
+      name: this.pageName,
+      description: this.pageDesc
+    };
+    this.pageService.createPage(this.websiteId, newPage).subscribe((pages) => {
+      console.log(pages);
+      this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page']);
+    });
 }
 
 }

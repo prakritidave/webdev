@@ -23,11 +23,19 @@ export class RegisterComponent implements OnInit {
   }
 
   addRegisteredUser() {
-     this.user = new User((new Date()).getTime() + '',
-     this.username, this.password, this.firstname, this.lastname);
-     console.log(this.user);
-     this.userService.createUser(this.user);
-     this.router.navigate(['/']);
+     // this.user = new User((new Date()).getTime() + '',
+     // this.username, this.password, this.firstname, this.lastname);
+     const newUser = {
+       _id: '',
+       username: this.username,
+       password: this.password,
+       firstName: this.firstname,
+       lastName: this.lastname
+     };
+     this.userService.createUser(newUser).subscribe((userFromServer) => {
+       console.log(userFromServer);
+       this.router.navigate(['/']);
+     });
   }
 
 }

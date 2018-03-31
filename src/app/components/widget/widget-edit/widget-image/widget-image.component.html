@@ -9,7 +9,7 @@
     <span class="navbar-brand cl-text-grey cl-text-bold">
      Update Widget
     </span>
-    <div class="navbar-text pull-right cl-text-white cl-icon-padding">
+    <div class="navbar-text pull-right cl-icon-padding">
         <span (click)="updateImageWidget()" class="glyphicon glyphicon-ok"></span>
     </div>
   </div>
@@ -19,36 +19,50 @@
   <form>
     <div class ="form-group">
       <label for="image-text">Text</label>
-
-      <input type="text" class="form-control"
-             name="text"
-             [(ngModel)] = "text"
-             id="image-text" placeholder="Text">
+      <input type="text" class="form-control" name="text" [(ngModel)] = "text" id="image-text" placeholder="Text">
     </div>
+
+    <div class="form-group">
+      <label for="size">Size</label>
+      <input type="text" class="form-control" id="size" placeholder="Widget size" name="size" [(ngModel)]="size">
+    </div>
+
     <div class ="form-group">
       <label for="image-size">URL</label>
-
-      <input id="image-size"
-             class="form-control"
-             placeholder="URL"
-             name="url"
-             [(ngModel)]="url">
+      <input id="image-size" class="form-control" placeholder="URL" name="url" [(ngModel)]="url">
     </div>
+
     <div class ="form-group">
       <label for="image-width">Width</label>
-
-      <input id="image-width"
-             class="form-control"
-             placeholder="Width"
-             name="width"
-             [(ngModel)]="width">
+      <input id="image-width" class="form-control" placeholder="Width" name="width" [(ngModel)]="width">
     </div>
+  </form>
+
+  <button (click)="flickrNavigate()" class="btn btn-block btn-secondary">Flicker</button>
+
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+
+    <label for="file">File</label>
+    <input id="file" name="myFile"   type="file" class="form-control"/>
+    <input  id="widgetId" name="widgetId" value="{{widgetId}}" style="display: none"/>
+    <input  id="websiteId" name="websiteId" value="{{websiteId}}" style="display: none"/>
+    <input  id="pageId"  name="pageId" value="{{pageId}}" style="display: none"/>
+    <input  id="userId" name="userId" value="{{userId}}" style="display: none"/>
+    <br>
+    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <br/>
 
   </form>
+
   <button type="button" class="btn btn-danger btn-block" (click)="deleteImageWidget()">Delete</button>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-default">
   <div class="container-fluid row">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
   </div>
 </nav>

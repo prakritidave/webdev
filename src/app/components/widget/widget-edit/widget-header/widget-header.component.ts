@@ -13,11 +13,12 @@ export class WidgetHeaderComponent implements OnInit {
   widgetId: String;
   size: String;
   text: String;
-  widget: Widget;
+  widget: any;
   pageId: String;
   userId: String;
   websiteId: String;
-  newWidget: Widget;
+  newWidget: any;
+  widgets: any [];
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -35,9 +36,14 @@ export class WidgetHeaderComponent implements OnInit {
       });
 
     if (this.widgetId !== undefined) {
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
-      this.size = this.widget.size;
-      this.text = this.widget.text;
+      this.widgetService.findWidgetById(this.widgetId).subscribe((widgetFound) => {
+        this.widget = widgetFound;
+        console.log(widgetFound);
+        if (widgetFound) {
+          this.size = widgetFound.size;
+          this.text = widgetFound.text;
+        }
+      });
     }
 
   }
@@ -45,20 +51,32 @@ export class WidgetHeaderComponent implements OnInit {
 // new Widget( '123', 'HEADER', '321', '2', 'GIZMODO' )
 
   createHeaderWidget() {
-    this.newWidget = new Widget((Math.random() + 102) + '', 'HEADER', this.pageId, this.size, this.text);
-    this.widgetService.createWidget(this.newWidget.pageId, this.newWidget);
-    console.log('widget id' + this.newWidget._id);
-    console.log('widget type' + this.newWidget.widgetType);
-    console.log('widget page' + this.newWidget.pageId);
-    console.log('widget size' + this.newWidget.size);
-    console.log('widget text' + this.newWidget.text);
-//    this.location.back();
+    // this.newWidget = new Widget(Math.random() + 102, 'HEADER', this.pageId, this.size, this.text, '', ''  , 0 , ''  , '' , false)
+    console.log('inside create header widget');
+    const newWidget = {
+      widgettype: 'Header',
+      _page: this.pageId,
+      text: this.text,
+      size: this.size
+    };
+    this.widgetService.createWidget(this.pageId, newWidget).subscribe((widgetlist) => {
+      console.log(widgetlist);
+    });
   }
 
   updateHeaderWidget() {
     if (this.widgetId !== undefined) {
-      this.widgetService.updateWidget(this.widgetId,
-        new Widget(this.widgetId, 'HEADER', this.pageId, this.size, this.text));
+      // this.newWidget = new Widget(this.widgetId, 'HEADER', this.pageId, this.size, this.text, '', ''  , 0 , ''  , '' , false);
+      const updateWidget = {
+        _id: this.widgetId,
+        widgettype: 'Header',
+        _page: this.pageId,
+        text: this.text,
+        size: this.size
+      };
+      this.widgetService.updateWidget(this.widgetId, updateWidget).subscribe((widgetlist) => {
+        this.widgets = widgetlist;
+      });
       console.log('inside update');
       console.log('size ' + this.size + ' text ' + this.text);
     }else {
@@ -68,11 +86,15 @@ export class WidgetHeaderComponent implements OnInit {
 //    this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     this.location.back();
   }
+
   goBack() {
     this.location.back();
   }
+
   deleteHeaderWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
+    this.widgetService.deleteWidget(this.widgetId).subscribe((widgetlist) => {
+      console.log(widgetlist);
+    });
 //    this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     this.location.back();
   }

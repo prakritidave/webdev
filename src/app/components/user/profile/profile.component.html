@@ -1,28 +1,38 @@
 <nav class="navbar navbar-fixed-top bg-primary">
-  <div class="container">
-    <h3 class="navbar-text text-white cl-text-bold">Profile</h3>
+  <div class="container-fluid">
+    <div class="cl-text-white navbar-text pull-left">
+    <a routerLink="/login" class="cl-text-white">
+      <span class="glyphicon glyphicon-chevron-left cl-text-white"></span>
+    </a>
+    </div>
+    <span class="navbar-brand cl-text-white cl-text-bold">
+      Profile
+    </span>
   </div>
 </nav>
 
 <div class="container cl-container-padding cl-container-padding-bottom">
   <form>
     <strong>Username</strong>
-    <input type="text" name="username" class = "form-control form-fixer input-lg" [(ngModel)]="user.username"><br>
+    <input type="text" name="username" title="name" class = "form-control form-fixer input-lg" [(ngModel)]="user.username"><br>
     <strong>Password</strong>
-    <input type="password" name="paswword" class = "form-control form-fixer input-lg" [(ngModel)]="user.password"><br>
+    <input type="password" name="paswword" title="password" class = "form-control form-fixer input-lg" [(ngModel)]="user.password"><br>
     <strong>First Name</strong>
-    <input type="text" name="first name" class = "form-control form-fixer input-lg" [(ngModel)]="user.firstName"><br>
+    <input type="text" name="first name" title="firstname" class = "form-control form-fixer input-lg" [(ngModel)]="user.firstName"><br>
     <strong>Last Name</strong>
-    <input type="text" name="last name" class = "form-control form-fixer input-lg" [(ngModel)]="user.lastName"><br>
+    <input type="text" name="last name" title="lastname" class = "form-control form-fixer input-lg" [(ngModel)]="user.lastName"><br>
   </form>
 
   <a routerLink="/profile/{{userId}}/website">
   <button type="button" class="btn btn-primary btn-block">Websites</button>
   </a><br>
 
-  <a (click)="updateUser(user)" class="btn btn-primary btn-block">Update</a><br>
+  <a (click)="updateUser()" class="btn btn-primary btn-block">Update</a><br>
+
+  <a routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block">Delete</a><br>
+
   <a routerLink="/login">
-  <button type="button" class="btn btn-danger btn-block">Logout</button>
+  <button type="button" class="btn btn-secondary btn-block">Logout</button>
   </a>
 
 </div>

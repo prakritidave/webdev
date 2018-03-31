@@ -1,0 +1,59 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-text pull-left">
+      <a (click)="goBack()" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left cl-text-black"></span>
+      </a>
+    </div>
+
+    <span class="navbar-brand thick navbar-header pull-left">
+      <b>Widget Edit</b>
+    </span>
+    <div class="navbar-text pull-right cl-icon-padding">
+      <a (click)="updateWidget()" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!--Body of the page -->
+<div class = "container">
+  <div *ngIf=flag
+       class="alert alert-danger">
+    {{error}}
+  </div>
+
+  <label for="name">Name</label>
+  <div>
+    <input [(ngModel)]="name" type="text" class="form-control" id="name" name="name" value={{name}} placeholder="Name">
+    <span class="alert-class" *ngIf=flag>{{alert}}</span>
+  </div><br>
+
+  <label for="text">Text</label>
+  <input [(ngModel)]="text" placeholder="Text" value={{text}} id="text" class="form-control"/><br>
+
+  <label for="rows">Rows</label>
+  <input [(ngModel)]="rows" value={{rows}} id="rows" class="form-control" type="number"/><br>
+
+  <label for="placeholder">Placeholder</label>
+  <input [(ngModel)]="placeholder" value={{placeholder}} id="placeholder" class="form-control" required/><br>
+
+  <div class="input-group">
+    <input type="text" placeholder="Formatted" readonly value={{formatted}} class="form-control"/>
+    <span class="input-group-addon"> <input [(ngModel)]="formatted" value={{formatted}} type="checkbox"/>
+    </span>
+  </div><br>
+
+  <a class="btn btn-danger btn-block " (click)="deleteWidget()">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+  </div>
+</nav>

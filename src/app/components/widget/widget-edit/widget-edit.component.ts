@@ -15,6 +15,7 @@ export class WidgetEditComponent implements OnInit {
   pageId: String;
   websiteId: String;
   currentWidget: Widget;
+  widgetType: String;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -28,10 +29,14 @@ export class WidgetEditComponent implements OnInit {
         this.pageId = params['pageId'];
         this.widgetId = params['widgetId'];
         console.log('widgetId' + this.widgetId);
+        this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
+          this.currentWidget = widget;
+          this.widgetType = this.currentWidget.widgettype;
+          console.log(this.widgetType);
+          console.log(this.currentWidget);
+        });
       }
     );
-    this.currentWidget = this.widgetService.findWidgetById(this.widgetId);
-    console.log('current widget' + this.currentWidget);
   }
 
 

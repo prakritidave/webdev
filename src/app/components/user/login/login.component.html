@@ -2,14 +2,13 @@
 
 <div class='conatiner'>
 <form (ngSubmit) = "login(username, password)" #f="ngForm">
-<label>Username</label>
+<label>Username</label><br>
 <input name="username" [(ngModel)]="username" required placeholder="username" >
-<br>
-<label>Password</label>
+<br><br/>
+<label>Password</label><br>
 <input type="password" required [(ngModel)]="password" placeholder="password" name="password">
 <br>
 <br>
 <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Login</button>
-
 </form>
 </div>

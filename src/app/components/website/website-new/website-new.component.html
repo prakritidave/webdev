@@ -16,8 +16,8 @@
       <p class="cl-text-white navbar-brand cl-text-bold">
         New Website
       </p>
-      <a routerLink="/profile/{{userId}}/website" class="navbar-text pull-right cl-text-white">
-        <span (click)="getWebsiteDetails()" class="glyphicon glyphicon-ok"></span>
+      <a (click)="getWebsiteDetails()" class="navbar-text pull-right cl-text-white">
+        <span class="glyphicon glyphicon-ok"></span>
       </a>
     </div>
   </div>
@@ -59,8 +59,8 @@
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
   <div class="container-fluid row">
-    <a href="#" class="navbar-text pull-right cl-text-white cl-icon-padding">
-      <span class="glyphicon glyphicon-user"></span>
+    <a routerLink="/profile/{{userId}}" class="navbar-text pull-right cl-icon-padding">
+      <span class="glyphicon glyphicon-user cl-text-white "></span>
     </a>
   </div>
 </nav>
