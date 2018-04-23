@@ -2,6 +2,11 @@ var mongoose = require("mongoose");
 var websiteSchema = require('../website/website.schema.server');
 
 var UserSchema = mongoose.Schema({
+  facebook: {
+    id: String,
+    token: String,
+    displayName: String
+  },
   username: {type: String, required: true},
   password: String,
   firstName: String,

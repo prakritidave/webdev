@@ -3,6 +3,8 @@ import {User} from '../../../models/user.model.client';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
+import {SharedService} from '../../../services/shared.service';
+import {environment} from '../../../../environments/environment';
 
 
 @Component({
@@ -14,24 +16,35 @@ export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
   username: String;
   password: String;
-  currUser: User;
+  currUser: any;
   errorFlag: boolean;
   errorMsg = 'Invalid username or password !';
+  baseUrl: any;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private sharedService: SharedService, private router: Router) { }
 
-login(username: String, password: String) {
-    this.userService.findUserByCredentials(username, password).subscribe((user: User) => {
+loginUser() {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+    this.userService.login(this.username, this.password).subscribe((user: any) => {
+      console.log('login component');
       if (user) {
         console.log(user);
         // console.log(' ');
          console.log(user._id);
-        this.router.navigate(['/profile', user._id]);
+         this.sharedService.user = user;
+         this.errorFlag = false;
+         this.currUser = user;
+        this.router.navigate(['/profile', this.currUser._id]);
       }
-    });
+    },
+      (error: any) => {
+      this.errorFlag = true;
+      } );
   }
 
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
   }
 
 }

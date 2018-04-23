@@ -1,0 +1,45 @@
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand">Profile</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a *ngIf="user.usertype=='foodie'" routerLink="/project/profile/{{userId}}/chefs"><b>Chef's Recipes</b></a></li>
+      <li><a *ngIf="user.usertype=='foodie'" routerLink="/project/profile/{{userId}}/recipe/new/yummly"><b>Search Recipes</b></a></li>
+      <li><a *ngIf="user.usertype=='chef'" routerLink="/project/profile/{{userId}}/recipe"><b>My Recipes</b></a></li>
+      <li><a *ngIf="user.usertype=='chef'" routerLink="/project/profile/{{userId}}/recipe/new"><b>Add Recipes</b></a></li>
+    </ul>
+    <div class="navbar-header">
+      <a class="navbar-brand pull-right">I am a {{user.usertype}}!</a>
+    </div>
+  </div>
+</div>
+<div class="container cl-container-padding">
+  <form>
+    <div class="form-group">
+    <strong>Username</strong>
+    <input type="text" name="username" title="username" class = "form-control form-fixer "[(ngModel)]="user.username"><br>
+    <strong>First Name</strong>
+    <input type="text" name="first name" title="firstname" class = "form-control form-fixer" [(ngModel)]="user.firstName"><br>
+    <strong>Last Name</strong>
+    <input type="text" name="last name" title="lastname" class = "form-control form-fixer" [(ngModel)]="user.lastName"><br>
+    </div>
+  </form>
+
+  <!--<a routerLink="/project/profile/{{userId}}/recipe">-->
+    <!--<button type="button" class="btn btn-primary btn-block">My Recipes</button>-->
+  <!--</a><br>-->
+
+  <!--<a routerLink="/">-->
+    <!--<button *ngIf="user.usertype=='foodie'" name="abc" type="button" class="btn btn-primary btn-block">Chefs I follow</button>-->
+    <!--<button *ngIf="user.usertype=='chef'" name="abc" type="button" class="btn btn-primary btn-block">Followed By</button>-->
+  <!--</a><br>-->
+
+  <a (click)="updateUser()" class="btn btn-primary btn-block">Update</a><br>
+  <a (click)="deleteUser()" class="btn btn-danger btn-block">Delete</a><br>
+  <button (click)="logoutUser()" type="button" class="btn btn-secondary btn-block">Logout</button>
+
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

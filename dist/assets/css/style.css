@@ -51,10 +51,10 @@
   font-weight: bolder;
 }
 
-body {
-  padding-top: 70px;
-  padding-bottom: 10px;
-}
+/*body {*/
+  /*padding-top: 70px;*/
+  /*padding-bottom: 10px;*/
+/*}*/
 
 .cl-text-blue{
   color: dodgerblue;

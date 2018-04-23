@@ -1,0 +1,11 @@
+<div class="container cl-container-padding">
+  <a (click)="toggleAssignmentLogin()">Assignment</a>
+  <a (click)="toggleProjectLogin()">Project</a>
+  <div *ngIf="showAssginmentLogin" id="login-assignment">
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+  </div>
+  <div *ngIf="showProjectLogin" id="project-login">
+    <a routerLink="/project">ProjectLogin</a><br>
+  </div>
+</div>

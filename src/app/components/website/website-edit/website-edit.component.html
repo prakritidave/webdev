@@ -42,21 +42,31 @@
   </div>
   <div class="verticle-line hidden-xs" style="margin-top: 0"></div>
   <div class="col-xs-8">
-    <form>
+    <div *ngIf=flag
+         class="alert alert-danger">
+      {{error}}
+    </div>
+    <form novalidate name="model.myform">
       <div class ="form-group">
         <label for="website-name">Website Name</label>
 
         <input type="text" class="form-control"
                name="wbesitename"
                [(ngModel)] = "websiteName"
-               id="website-name" placeholder="Name">
+               id="website-name"
+               placeholder="Name"
+               required>
+        <span class="alert-class"
+              *ngIf=flag>{{alert}}</span>
       </div>
+
       <div class ="form-group">
         <label for="website-description">Website Description</label>
 
         <textarea id="website-description"
                   class="form-control"
-                  rows="5" placeholder="Description"
+                  rows="5"
+                  placeholder="Description"
                   name="websitedescription"
                   [(ngModel)]="websiteDescription">
         </textarea>

@@ -15,13 +15,23 @@
   </div>
 </nav>
 <div class="container-fluid cl-container-padding-bottom cl-container-padding">
-  <form>
+  <div *ngIf="errFlag"
+       class="alert alert-danger">
+    {{error}}
+  </div>
+  <form novalidate name="model.myform">
     <div class ="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control"
+      <input type="text"
+             class="form-control"
              name="pagename"
-             id="name" placeholder="Page Name"
+             id="name"
+             required
+             placeholder="Page Name"
              [(ngModel)] = "pageName">
+
+      <span class="alert-class"
+            *ngIf="errFlag">{{alert}}</span>
     </div>
     <div class ="form-group">
       <label for="description">Description</label>

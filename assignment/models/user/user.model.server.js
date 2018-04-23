@@ -10,9 +10,19 @@ UserModel.findUserByCredentials = findUserByCredentials;
 UserModel.findUserByUserName = findUserByUserName;
 UserModel.updateUser = updateUser;
 UserModel.deleteUser = deleteUser;
+UserModel.findUserByFacebookId = findUserByFacebookId;
+
+var api = {
+  findUserByFacebookId: findUserByFacebookId
+}
+
+function findUserByFacebookId(facebookId) {
+return UserModel.findOne({'facebook.id': facebookId});
+}
 
 function createUser(user){
-  delete user._id;
+  // delete user._id;
+  console.log(user);
   return UserModel.create(user);
 }
 
@@ -25,7 +35,7 @@ function updateUser(userId, user){
 }
 
 function findUserByUserName(username){
-  return UserModel.find({username: username});
+  return UserModel.findOne({username: username});
 }
 
 function findUserByCredentials(username, password){

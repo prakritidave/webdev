@@ -1,0 +1,37 @@
+<div class="cl-container-padding container mydiv">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Username</label>
+      <input type="text" name="username" [(ngModel)]="username" class="form-control-sm" id="formGroupExampleInput" required placeholder="username">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Password</label>
+      <input name="password" type="password" [(ngModel)]="password" class="form-control-sm" id="formGroupExampleInput2" required placeholder="password">
+    </div>
+    <div class="form-group">
+      <label>Not Registered Yet?</label>
+      <a routerLink="/registerProjUser">
+      <button class="btn btn-info btn-sm">Register here</button><br></a><br>
+      <button (click)="loginUser()" class="btn btn-primary btn-sm" type="submit" [disabled]="!f.valid">Login</button>
+    </div><br>
+
+  </form>
+</div>
+<!--<div class="form-group">-->
+<!--<label>Login As</label><br>-->
+<!--<label class="btn btn-primary">-->
+<!--<input type="radio" #vpass="ngModel"[(ngModel)]="usertype" class="active" data-ng-model="selection" name="options" value="chef" />-->
+<!--<span>Chef</span>-->
+<!--</label>-->
+
+<!--<label class="btn btn-primary">-->
+<!--<input type="radio" #vpass="ngModel" [(ngModel)]="usertype" data-ng-model="selection" name="options" value="foodie"/>-->
+<!--<span>Foodie</span>-->
+<!--</label><br><br>-->
+
+<!--<span class="help-block" *ngIf="!vpass.valid && vpass.touched">*Please select one!</span>-->
+<!--</div>-->
+
+
+<!--<button class="fa fa-facebook btn btn-primary">-->
+<!--<a href="{{baseUrl}}/auth/facebook"></a>Facebook</button>-->

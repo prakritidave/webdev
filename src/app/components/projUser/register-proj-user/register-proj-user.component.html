@@ -1,0 +1,87 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid row">
+    <div class="cl-text-black navbar-text pull-left">
+    </div>
+    <span class="navbar-brand cl-text-black cl-text-bold">
+      Register Here
+    </span>
+  </div>
+</nav>
+
+<div class="container cl-container-padding">
+  <div *ngIf="error"
+       class="alert alert-danger">
+    {{error}}
+  </div>
+
+  <form #f="ngForm">
+    <input type="text"
+           class = "form-control input-lg"
+           [(ngModel)] = "firstName"
+           name="firstname"
+           placeholder="firstname"><br>
+
+    <input type="text"
+           class = "form-control input-lg"
+           [(ngModel)] = "lastName"
+           name="lastname"
+           placeholder="lastname"><br>
+
+    <input type="text"
+           class = "form-control input-lg"
+           [(ngModel)] = "username"
+           name="username"
+           #name="ngModel"
+           placeholder="username"/><br>
+
+    <span class="help-block" *ngIf="!name.valid && name.touched">*Please enter username!</span>
+
+    <input type="password"
+           class = "form-control input-lg"
+           [(ngModel)] = "password"
+           name="password"
+           #pass="ngModel"
+           placeholder="password"/><br>
+
+    <span class="help-block" *ngIf="!pass.valid && pass.touched">*Please enter password!</span>
+
+    <input
+      name="vpassword"
+      placeholder="verify password"
+      [(ngModel)] = "vpassword"
+      type="password"
+      class="form-control"
+      ngModel
+      required
+      #vpass="ngModel"/><br>
+
+    <span class="help-block" *ngIf="!vpass.valid && vpass.touched">*Please enter password again!</span>
+
+    <label>I am a</label><br>
+    <div class="form-group">
+    <label class="btn btn-primary">
+      <input type="radio" (change)="getRadioButtonValue($event)" [(ngModel)]="usertype" class="active"  name="options" value="chef" />
+      <span>Chef</span>
+    </label>
+
+    <label class="btn btn-primary">
+      <input type="radio" (change)="getRadioButtonValue($event)" [(ngModel)]="usertype"  name="options" value="foodie"/>
+      <span>Foodie</span>
+    </label>
+    </div>
+      <br><br>
+
+    <button (click)="registerUser()"
+      class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="!f.valid">Register</button><br>
+
+    <a routerLink="/project">
+      <button type="button" class="btn btn-danger btn-block">Cancel</button>
+    </a>
+  </form>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row"></div>
+</nav>

@@ -104,20 +104,24 @@ export class WidgetTextComponent implements OnInit {
     // this.newWidget = new Widget( Math.random() + 201 + '', 'TEXT', this.pageId, '1', this.text, '100%',
     //   '', this.rows, this.name, this.placeholder, this.formatted);
     // console.log(this.newWidget);
-    const newWidget = {
-      widgettype: 'Text',
-      _page: this.pageId,
-      placeholder: this.placeholder,
-      rows: this.rows,
-      formatted: this.formatted,
-      name: this.name
-    };
-    this.widgetService.createWidget(this.pageId, newWidget).subscribe((widgetlist) => {
-      console.log(widgetlist);
-      if (widgetlist.length !== 0 ) {
-         this.goBack();
-      }
-    });
+    if (this.name === undefined) {
+      this.flag = true;
+    } else {
+      const newWidget = {
+        widgettype: 'Text',
+        _page: this.pageId,
+        placeholder: this.placeholder,
+        rows: this.rows,
+        formatted: this.formatted,
+        name: this.name
+      };
+      this.widgetService.createWidget(this.pageId, newWidget).subscribe((widgetlist) => {
+        console.log(widgetlist);
+        if (widgetlist.length !== 0 ) {
+          this.goBack();
+        }
+      });
+    }
   }
 
   deleteWidget() {

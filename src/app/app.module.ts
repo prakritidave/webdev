@@ -3,9 +3,13 @@ import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 import {Pipe} from '@angular/compiler/src/core';
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {Component} from '@angular/core';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material';
+import {MatFormFieldControl} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -34,6 +38,22 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrService} from './services/flickr.service.client';
+import {SharedService} from './services/shared.service';
+import {AuthGuardService} from './services/auth-guard.service';
+import { HomeComponent } from './components/projUser/home/home.component';
+import { RegisterProjUserComponent } from './components/projUser/register-proj-user/register-proj-user.component';
+import { ProfileProjUserComponent } from './components/projUser/profile-proj-user/profile-proj-user.component';
+import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
+import { AddChefRecipeComponent } from './components/recipes/add-recipe/add-chef-recipe/add-chef-recipe.component';
+import {FoodService} from './services/food.service.client';
+import {ProjUserService} from './services/project/projuser.service.client';
+import {RecipeService} from './services/project/recipe.service.client';
+import { SearchYummlyRecipesComponent } from './components/recipes/search-yummly-recipes/search-yummly-recipes.component';
+import { ViewRecipeComponent } from './components/recipes/view-recipe/view-recipe.component';
+import { ChefListComponent } from './components/projUser/chef-list/chef-list.component';
+import { EditChefRecipeComponent } from './components/recipes/edit-chef-recipe/edit-chef-recipe.component';
+import { WebdevMenuComponent } from './components/webdev-menu/webdev-menu.component';
+import {ProjAuthGuardService} from './services/proj-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -57,16 +77,30 @@ import {FlickrService} from './services/flickr.service.client';
     SafePipeComponent,
     WidgetHtmlComponent,
     WidgetTextComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    HomeComponent,
+    RegisterProjUserComponent,
+    ProfileProjUserComponent,
+    RecipeListComponent,
+    AddChefRecipeComponent,
+    SearchYummlyRecipesComponent,
+    ViewRecipeComponent,
+    ChefListComponent,
+    EditChefRecipeComponent,
+    WebdevMenuComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    QuillEditorModule
+    QuillEditorModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
   ],
-  providers: [UserService, WebsiteService, WidgetService, PageService, FlickrService],
+
+  providers: [UserService, WebsiteService, WidgetService, PageService, FlickrService, SharedService,
+    AuthGuardService, FoodService, ProjUserService, RecipeService, ProjAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

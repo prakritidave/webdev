@@ -13,24 +13,19 @@
 
 <div class="container cl-container-padding cl-container-padding-bottom">
   <form>
-    <strong>Username</strong>
+    <label>Username</label>
     <input type="text" name="username" title="name" class = "form-control form-fixer input-lg" [(ngModel)]="user.username"><br>
-    <strong>Password</strong>
-    <input type="password" name="paswword" title="password" class = "form-control form-fixer input-lg" [(ngModel)]="user.password"><br>
-    <strong>First Name</strong>
+    <label>FirstName</label>
     <input type="text" name="first name" title="firstname" class = "form-control form-fixer input-lg" [(ngModel)]="user.firstName"><br>
-    <strong>Last Name</strong>
+    <label>LastName</label>
     <input type="text" name="last name" title="lastname" class = "form-control form-fixer input-lg" [(ngModel)]="user.lastName"><br>
   </form>
 
   <a routerLink="/profile/{{userId}}/website">
   <button type="button" class="btn btn-primary btn-block">Websites</button>
-  </a><br>
-
-  <a (click)="updateUser()" class="btn btn-primary btn-block">Update</a><br>
-
-  <a routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block">Delete</a><br>
-
+  </a>
+  <a (click)="updateUser()" class="btn btn-primary btn-block">Update</a>
+  <a routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block">Delete</a>
   <a routerLink="/login">
   <button type="button" class="btn btn-secondary btn-block">Logout</button>
   </a>

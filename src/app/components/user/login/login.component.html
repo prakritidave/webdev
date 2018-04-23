@@ -1,7 +1,8 @@
 <h1>Login</h1>
 
 <div class='conatiner'>
-<form (ngSubmit) = "login(username, password)" #f="ngForm">
+
+<form (ngSubmit) = "loginUser()" #f="ngForm">
 <label>Username</label><br>
 <input name="username" [(ngModel)]="username" required placeholder="username" >
 <br><br/>
@@ -10,5 +11,13 @@
 <br>
 <br>
 <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Login</button>
-</form>
+  <!--<button class="fa fa-facebook btn btn-primary">-->
+    <!--<a href="{{baseUrl}}/auth/facebook"></a>Facebook</button>-->
+</form><br>
+
+  <a href="{{baseUrl}}/auth/facebook" class="btn btn-primary">
+    <span class="fa fa-facebook"></span>
+    Facebook
+  </a>
+
 </div>

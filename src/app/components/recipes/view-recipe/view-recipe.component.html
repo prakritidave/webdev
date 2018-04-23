@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid row">
+    <div class="cl-text-black navbar-text pull-left">
+      <a (click)="goBack()" class="cl-text-black">
+        <span class="glyphicon glyphicon-chevron-left cl-text-black"></span>
+      </a>
+      <span class="cl-text-black">View Recipe</span>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid cl-container-padding cl-container-padding-bottom">
+  <div class="col-xs-4">
+        <div class ="form-group">
+          <div>
+          <label for="prep-time">Prep Time</label><br>
+            <p id="prep-time">{{recipe.preptime}}</p><br>
+          </div><br>
+
+          <div>
+          <label for="cook-time">Cook Time</label><br>
+            <p id="cook-time">{{recipe.cooktime}}</p></div><br>
+
+          <div>
+          <label for="servings">Number of Servings</label>
+            <p id="servings">{{recipe.servings}}</p></div><br>
+        </div>
+  </div>
+    <!--<div class="verticle-line hidden-xs" style="padding-top: 0px"></div>-->
+  <div class="col-xs-8">
+        <div class ="form-group">
+          <p>
+          <label for="recipe-title">Recipe Title</label>
+          <p id="recipe-title">{{recipe.title}}</p><br>
+
+          <div>
+          <label for="recipe-description">Recipe Description</label>
+            <p id="recipe-description">{{recipe.description}}</p></div><br>
+
+          <div>
+          <label for="ingredients">Ingredients</label>
+            <p id="ingredients">{{recipe.ingredients}}</p></div><br>
+
+          <div>
+          <label for="directions">Directions</label>
+            <p id="directions">{{recipe.direction}}</p></div><br>
+        </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/project/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user cl-text-black"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+

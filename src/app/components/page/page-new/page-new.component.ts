@@ -13,12 +13,20 @@ export class PageNewComponent implements OnInit {
   pageDesc: String;
   websiteId: String;
   userId: String;
+  error: string;
+  alert: string;
+  errFlag: boolean; // flag to show/hide error alerts
 
   constructor(private pageService: PageService,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+
+    this.errFlag = false;
+    this.error = 'Enter the name of the Page';
+    this.alert = '* Enter the Page name';
+
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.websiteId = params['websiteId'];
@@ -29,14 +37,19 @@ export class PageNewComponent implements OnInit {
   }
 
   createNewPage() {
-    const newPage = {
-      name: this.pageName,
-      description: this.pageDesc
-    };
-    this.pageService.createPage(this.websiteId, newPage).subscribe((pages) => {
-      console.log(pages);
-      this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page']);
-    });
+    if (this.pageName === '') {
+      this.errFlag = true;
+    } else {
+      const newPage = {
+        name: this.pageName,
+        description: this.pageDesc
+      };
+      this.pageService.createPage(this.websiteId, newPage).subscribe((pages) => {
+        console.log(pages);
+        this.router.navigate(['/profile', this.userId, 'website', this.websiteId, 'page']);
+      });
+    }
+
 }
 
 }

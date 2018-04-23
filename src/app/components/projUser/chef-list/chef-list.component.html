@@ -1,0 +1,36 @@
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!--<div class="container">-->
+    <div class="navbar-header">
+      <div class="cl-text-black navbar-text pull-left">
+        <a routerLink="/project/profile/{{userId}}" class="cl-text-black">
+          <span class="glyphicon glyphicon-chevron-left cl-text-black"></span>
+        </a>
+      </div>
+      <a class="navbar-brand cl-text-orange cl-text-bold">Our Creative Chefs</a>
+    </div>
+  <!--</div>-->
+</div>
+
+<div class="container-fluid cl-container-padding-bottom cl-container-padding">
+  <div class="col-xs-2">
+    <ul class="list-group">
+      <li *ngFor = "let chef of chefs" class="list-group-item li-no-border">
+        <a routerLink="/project/profile/{{userId}}/{{chef._id}}/recipe">
+          <label>{{chef.firstName}}</label>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom ">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/project/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user cl-text-black"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+

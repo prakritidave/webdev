@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../../models/user.model.client';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { UserService } from '../../../services/user.service.client';
-import {ActivatedRoute, Router} from '@angular/router';
-import {WebsiteService} from '../../../services/website.service.client';
+import { Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,32 +9,43 @@ import {WebsiteService} from '../../../services/website.service.client';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  username: String;
-  password: String;
-  firstname: String;
-  lastname: String;
-  user: User;
+
+ @ViewChild('f') registerForm: NgForm;
+
+  username: string;
+  password: string;
+  vpassword: string;
+  firstname: string;
+  lastname: string;
+  user: any;
+  error: any;
 
   constructor(private userService: UserService,
               private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   addRegisteredUser() {
-     // this.user = new User((new Date()).getTime() + '',
-     // this.username, this.password, this.firstname, this.lastname);
-     const newUser = {
-       _id: '',
-       username: this.username,
-       password: this.password,
-       firstName: this.firstname,
-       lastName: this.lastname
-     };
-     this.userService.createUser(newUser).subscribe((userFromServer) => {
-       console.log(userFromServer);
-       this.router.navigate(['/']);
-     });
+    this.username = this.registerForm.value.username;
+    this.password = this.registerForm.value.password;
+    this.vpassword = this.registerForm.value.vpassword;
+
+    if (this.password === this.vpassword) {
+      this.userService.register(this.username, this.password)
+        .subscribe(
+          (data: any) => {
+            console.log(data);
+            this.user = data;
+            this.router.navigate(['/profile', this.user._id]);
+          },
+          (error: any) => {
+            console.log(error);
+            this.error = error._body;
+          }
+        );
+    } else {
+      this.error = 'passwords do not match!';
+    }
   }
 
 }

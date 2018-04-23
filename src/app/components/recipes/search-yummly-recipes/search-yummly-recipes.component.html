@@ -1,0 +1,70 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid row">
+    <div class="cl-text-black navbar-text pull-left">
+      <a routerLink="/project/profile/{{userId}}" class="cl-text-black">
+        <span class="glyphicon glyphicon-chevron-left cl-text-black"></span>
+      </a>
+    </div>
+    <span class="navbar-brand cl-text-black cl-text-bold">
+      Yummly Recipes
+    </span>
+  </div>
+</nav>
+
+<div class="container-fluid cl-container-padding-bottom cl-container-padding">
+    <form novalidate name="model.myform">
+      <div class ="form-group">
+        <label>Search Recipes<p>(Click on each image to view details)</p></label>
+
+        <div class = "input-group">
+          <input name="searchbox" [(ngModel)]="searchText" type="text" class="form-control"><br>
+          <span class="input-group-btn">
+              <a (click)="searchRecipes()" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search" ></span>
+              </a>
+            </span>
+        </div><br>
+
+
+        <div class="row">
+          <div *ngFor="let match of matches" class="col-xs-4">
+            <!--<img (click)="selectPhoto(pic)" width="100%"-->
+            <!--[src]="['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '_s.jpg']"/>-->
+            <div>
+              <img width="80%" (click)="showRecipeDetails(match)" src={{match.smallImageUrls}}/>
+            <div *ngIf="showDiv && match === selectedMatch">
+              <div class ="form-group">
+                <label>{{match.recipeName}}</label><br>
+                  <!--<label for="recipe-title">Recipe Title</label>-->
+                <!--<p id="recipe-title">{{selectedMatch.sourceDisplayName}}</p><br>-->
+                <div>
+                  <label for="cook-time">Total Cook Time (in seconds)</label><br>
+                  <p id="cook-time">{{selectedMatch.totalTimeInSeconds}}</p></div><br>
+
+                <div>
+                  <label for="ingredients">Ingredients</label>
+                  <p id="ingredients">{{selectedMatch.ingredients}}</p></div><br>
+
+                <div>
+                  <label for="rating">Rating</label>
+                  <p id="rating">{{selectedMatch.rating}}</p></div><br>
+              </div>
+            </div>
+            </div>
+            <br>
+          </div><br>
+        </div>
+      </div>
+    </form>
+  </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/project/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user cl-text-black"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+

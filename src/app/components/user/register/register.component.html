@@ -1,19 +1,59 @@
 <div class="container">
   <h1>Register</h1>
-  <form>
-    <input type="text" class = "form-control input-lg"
-           name="firstname" [(ngModel)]="firstname"
+
+  <div *ngIf="error"
+       class="alert alert-danger">
+    {{error}}
+  </div>
+
+
+  <form (ngSubmit)="addRegisteredUser()" #f="ngForm">
+
+    <input type="text"
+           class = "form-control input-lg"
+           name="firstname"
+           [(ngModel)]="firstname"
            placeholder="firstname"><br>
-    <input type="text" class = "form-control input-lg"
-           name="lastname" [(ngModel)]="lastname"
+
+    <input type="text"
+           class = "form-control input-lg"
+           name="lastname"
+           [(ngModel)]="lastname"
            placeholder="lastname"><br>
-    <input type="text" class = "form-control input-lg"
-           name="username" [(ngModel)]="username"
-           placeholder="username"><br>
-    <input type="password" class = "form-control input-lg"
-           name="password" [(ngModel)]="password"
-           placeholder="password"><br>
-    <button type="button" (click)="addRegisteredUser()" class="btn btn-primary btn-block">Register</button><br>
+
+    <input type="text"
+           class = "form-control input-lg"
+           name="username"
+           [(ngModel)]="username"
+           placeholder="username"
+           #name="ngModel"/><br>
+
+    <span class="help-block" *ngIf="!name.valid && name.touched">*Please enter username!</span>
+
+    <input type="password"
+           class = "form-control input-lg"
+           name="password"
+           [(ngModel)]="password"
+           placeholder="password"
+           #pass="ngModel"/><br>
+
+    <span class="help-block" *ngIf="!pass.valid && pass.touched">*Please enter password!</span>
+
+    <input
+      name="vpassword"
+      placeholder="verify password"
+      type="password"
+      class="form-control"
+      ngModel
+      required
+      #vpass="ngModel"
+    />
+    <span class="help-block" *ngIf="!vpass.valid && vpass.touched">*Please enter password again!</span>
+
+    <button class="btn btn-primary btn-block"
+            type="submit"
+    [disabled]="!f.valid">Register</button><br>
+
     <a routerLink="/">
     <button type="button" class="btn btn-danger btn-block">Cancel</button>
     </a>

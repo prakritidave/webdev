@@ -61,16 +61,20 @@ export class WidgetHtmlComponent implements OnInit {
     this.newWidget = new Widget(Math.random() + 801 + '', 'HTML', this.pageId, '1',
       this.text, '100%', '', 0, this.widgetName, '', false);
 */
-    const newWidget = {
-      widgettype: 'HTML',
-      name: this.widgetName,
-      text: this.text,
-      _page: this.pageId
-    };
-    this.widgetService.createWidget(this.pageId, newWidget).subscribe((widgetlist) => {
-      console.log(widgetlist);
-      this.goBack();
-    });
+    if (this.widgetName === '') {
+      this.flag = true;
+    } else {
+      const newWidget = {
+        widgettype: 'HTML',
+        name: this.widgetName,
+        text: this.text,
+        _page: this.pageId
+      };
+      this.widgetService.createWidget(this.pageId, newWidget).subscribe((widgetlist) => {
+        console.log(widgetlist);
+        this.goBack();
+      });
+    }
   }
 
   updateWidget() {

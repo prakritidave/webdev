@@ -18,11 +18,11 @@
 </nav>
 
 <div class="container">
-  <div *ngIf="flag"
-       class="alert alert-danger">
-    {{error}}
-  </div>
   <form novalidate name="myform">
+    <div *ngIf="flag"
+         class="alert alert-danger">
+      {{error}}
+    </div>
 
     <div class="form-group" >
       <label for="Name">Name</label>

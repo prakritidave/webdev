@@ -1,0 +1,88 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid row">
+    <div class="cl-text-black navbar-text pull-left">
+      <a routerLink="/project/profile/{{userId}}/recipe" class="cl-text-black">
+        <span class="glyphicon glyphicon-chevron-left cl-text-black"></span>
+      </a>
+    </div>
+    <span class="navbar-brand cl-text-black cl-text-bold">
+      Update Recipe
+    </span>
+    <a (click)="saveRecipe()" class="navbar-brand pull-right cl-text-black cl-icon-padding">
+      <span class="glyphicon glyphicon-ok cl-text-black"></span>
+    </a>
+  </div>
+</nav>
+
+<div class="container cl-container-padding cl-container-padding-bottom">
+  <div class="container-fluid">
+    <div class="col-xs-4 hidden-xs">
+      <form novalidate name="model.myform">
+        <div class ="form-group">
+          <label for="prep-time">Prep Time (minutes)</label>
+          <input type="text" class="form-control"
+                 name="prep" id="prep-time" required
+                 [(ngModel)]= "recipe.preptime">
+
+        </div>
+        <div class ="form-group">
+          <label for="cook-time">Cook Time (minutes)</label>
+          <input type="text" class="form-control"
+                 name="cook" id="cook-time" required
+                 [(ngModel)]= "recipe.cooktime">
+
+
+        </div>
+        <div class ="form-group">
+          <label for="servings">Number of Servings</label>
+          <input type="text" class="form-control"
+                 name="servings" id="servings" required
+                 [(ngModel)]= "recipe.servings">
+
+        </div>
+      </form>
+    </div>
+    <!--<div class="verticle-line hidden-xs" style="padding-top: 0px"></div>-->
+    <div class="col-xs-8">
+      <form novalidate name="model.myform">
+        <div class ="form-group">
+          <label for="recipe-title">Recipe Title</label>
+          <input type="text" class="form-control"
+                 name="name" id="recipe-title"
+                 placeholder="Title" required
+                 [(ngModel)]= "recipe.title">
+
+        </div>
+        <div class ="form-group">
+          <label for="recipe-description">Recipe Description</label>
+          <textarea id="recipe-description" name= "description" required
+                    class="form-control" rows="5" placeholder="Description"
+                    [(ngModel)]="recipe.description"></textarea>
+        </div>
+        <div class ="form-group">
+          <label for="ingredients">Ingredients</label>
+          <textarea id="ingredients" name= "ingredients" required
+                    class="form-control" rows="5" placeholder="add one per line"
+                    [(ngModel)]="recipe.ingredients"></textarea>
+        </div>
+        <div class ="form-group">
+          <label for="directions">Directions</label>
+          <textarea id="directions" name= "directions" required
+                    class="form-control" rows="5" placeholder="add one step per line"
+                    [(ngModel)]="recipe.direction"></textarea>
+        </div>
+      </form>
+      <button type="button" class="btn btn-danger btn-block" (click)="deleteRecipe()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text cl-icon-padding">
+      <a routerLink="/project/profile/{{userId}}">
+        <span class="glyphicon glyphicon-user cl-text-black"></span>
+      </a>
+    </div>
+  </div>
+</nav>
